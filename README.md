@@ -1,0 +1,1 @@
+# adapter-cashreg-spring-boot-starter
