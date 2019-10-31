@@ -1,5 +1,9 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.rbkmoney.adapter.cashreg.spring.boot.starter.config.ErrorMappingConfiguration,\
-com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterProperties,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashRegProperties,\
 com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.TimerProperties,\
-com.rbkmoney.adapter.cashreg.spring.boot.starter.config.ConverterIpConfiguration
+com.rbkmoney.adapter.cashreg.spring.boot.starter.config.ConverterIpConfiguration,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.flow.TargetTypeResolver,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.flow.DefaultStepResolverImpl,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.serializer.AdapterSerializer,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.converter.CashRegAdapterContextConveter

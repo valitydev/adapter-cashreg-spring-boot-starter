@@ -11,9 +11,9 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties("adapter")
+@ConfigurationProperties("adapter-cashreg")
 @Validated
-public class AdapterProperties {
+public class AdapterCashRegProperties {
 
     @NotEmpty
     private String url;
