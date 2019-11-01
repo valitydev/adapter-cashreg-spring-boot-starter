@@ -1,8 +1,8 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.converter;
 
 
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.state.deserializer.AdapterDeserializer;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.AdapterContext;
-import com.rbkmoney.adapter.cashreg.spring.boot.starter.serializer.AdapterSerializer;
 import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -30,14 +30,14 @@ public class CashRegAdapterContextConverter implements Converter<CashRegContext,
 
     private static final byte[] DEFAULT_STATE = new byte[0];
 
-    private final AdapterSerializer serializer;
+    private final AdapterDeserializer deserializer;
 
     @Override
     public AdapterContext convert(CashRegContext context) {
         AdapterContext adapterContext = new AdapterContext();
         byte[] state = getState(context);
         if (state != null && state.length > 0) {
-            return serializer.read(state);
+            return deserializer.read(state);
         }
         return adapterContext;
     }

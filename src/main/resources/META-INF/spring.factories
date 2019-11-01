@@ -4,5 +4,6 @@ com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashRe
 com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.TimerProperties,\
 com.rbkmoney.adapter.cashreg.spring.boot.starter.config.ConverterIpConfiguration,\
 com.rbkmoney.adapter.cashreg.spring.boot.starter.flow.DefaultStepResolverImpl,\
-com.rbkmoney.adapter.cashreg.spring.boot.starter.serializer.AdapterSerializer,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.state.serializer.AdapterSerializer,\
+com.rbkmoney.adapter.cashreg.spring.boot.starter.state.deserializer.AdapterDeserializer,\
 com.rbkmoney.adapter.cashreg.spring.boot.starter.converter.CashRegAdapterContextConverter

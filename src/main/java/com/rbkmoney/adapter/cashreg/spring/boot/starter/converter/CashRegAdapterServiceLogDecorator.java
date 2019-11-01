@@ -37,9 +37,9 @@ import org.apache.thrift.TException;
  * Servlet
  * <pre>
  * {@code
- * @RequiredArgsConstructor
- * @WebServlet("/adapter/cashreg/provider_name")
- * public class AdapterServlet extends GenericServlet {
+ *  @RequiredArgsConstructor
+ *  @WebServlet("/adapter/cashreg/provider_name")
+ *  public class AdapterServlet extends GenericServlet {
  *
  *     private final CashRegProviderSrv.Iface handler;
  *     private Servlet servlet;
@@ -55,7 +55,7 @@ import org.apache.thrift.TException;
  *         servlet.service(request, response);
  *     }
  *
- * }
+ *  }
  * }
  * </pre>
  */
