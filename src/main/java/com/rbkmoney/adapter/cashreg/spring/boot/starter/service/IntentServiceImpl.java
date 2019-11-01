@@ -10,6 +10,17 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
 
+
+/**
+ * Usage example:
+ *
+ * <pre>
+ * {@code
+ *      IntentServiceImpl intentService = new IntentServiceImpl(errorMapping, timerProperties);
+ *      Intent intent = intentService.getFailureByCode(exitStateModel);
+ * }
+ * </pre>
+ */
 @RequiredArgsConstructor
 public class IntentServiceImpl implements IntentService {
 

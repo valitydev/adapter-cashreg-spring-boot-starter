@@ -7,9 +7,28 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * Usage example:
+ *
+ * <pre>
+ * {@code
+ *      @Autowired
+ *      private final AdapterSerializer serializer;
+ * }
+ * </pre>
+ * <p>
+ * Code:
+ * <pre>
+ * {@code
+ *      byte[] byteResult = serializer.writeByte(Object)
+ *      Object objectResult = serializer.read(byteResult)
+ * }
+ * </pre>
+ */
 @Component
 public class AdapterSerializer extends StateSerializer<AdapterContext> {
 
+    // TODO: need Deserializer for read?
     public AdapterSerializer(ObjectMapper mapper) {
         super(mapper);
     }

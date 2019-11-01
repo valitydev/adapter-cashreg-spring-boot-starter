@@ -3,12 +3,10 @@ package com.rbkmoney.adapter.cashreg.spring.boot.starter.flow;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.TargetType;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.exception.UnknownTargetTypeException;
-import org.springframework.stereotype.Component;
 
-@Component
 public class TargetTypeResolver {
 
-    public TargetType resolve(com.rbkmoney.damsel.cashreg.type.Type type) {
+    public static TargetType resolve(com.rbkmoney.damsel.cashreg.type.Type type) {
         if (type != null) {
             if (type.isSetCredit()) {
                 return TargetType.CREDIT;

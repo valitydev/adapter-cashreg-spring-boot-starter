@@ -9,6 +9,35 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 
+/**
+ * Usage example:
+ * <p>
+ * application.yml
+ * <pre>
+ * {@code
+ * error-mapping:
+ *   file: classpath:fixture/errors.json
+ *   patternReason: "'%s' - '%s'" # 'code' - 'description'
+ * }
+ * </pre>
+ * <p>
+ * Depends
+ * <pre>
+ * {@code
+ *      @Autowired
+ *      private final ErrorMapping errorMapping;
+ * }
+ * </pre>
+ * <p>
+ * Code:
+ * <pre>
+ * {@code
+ *      Failure failure = errorMapping.mapFailure(code, reason);
+ * }
+ * </pre>
+ *
+ * @see ErrorMappingConfiguration
+ */
 @Configuration
 public class ErrorMappingConfiguration {
 

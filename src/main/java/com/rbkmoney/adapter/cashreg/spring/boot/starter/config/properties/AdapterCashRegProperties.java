@@ -8,11 +8,29 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
 
+
+/**
+ * application.yml
+ * <pre>
+ * {@code
+ * adapter-cashreg:
+ *  url: http://localhost.ru/path/v1/call
+ * }
+ * </pre>
+ * <p>
+ * Usage example:
+ * <pre>
+ * {@code
+ * @Autowired
+ * private final AdapterCashRegProperties adapterCashRegProperties;
+ * }
+ * </pre>
+ */
 @Getter
 @Setter
+@Validated
 @Configuration
 @ConfigurationProperties("adapter-cashreg")
-@Validated
 public class AdapterCashRegProperties {
 
     @NotEmpty

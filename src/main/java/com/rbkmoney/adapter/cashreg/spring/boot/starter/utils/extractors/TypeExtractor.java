@@ -5,6 +5,16 @@ import com.rbkmoney.damsel.cashreg.type.Type;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
+
+/**
+ * Usage example:
+ *
+ * <pre>
+ * {@code
+ *     String type = TypeExtractor.extractCashRegType(cashRegContext);
+ * }
+ * </pre>
+ */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class TypeExtractor {
 

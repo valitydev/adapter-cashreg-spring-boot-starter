@@ -11,7 +11,7 @@ public class DefaultStepResolverImpl implements StepResolver<StateModel, ExitSta
 
     @Override
     public Step resolveEntry(StateModel stateModel) {
-        if(stateModel.getStep() == null) {
+        if (stateModel.getStep() == null) {
             return Step.CREATE;
         }
         return Step.CHECK_STATUS;

@@ -8,9 +8,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * Usage example:
+ * <pre>
+ * {@code
+ *      @Autowired
+ *      CashRegAdapterContextConverter cashRegAdapterContextConverter;
+ * }
+ * </pre>
+ *
+ * <pre>
+ * {@code
+ *      AdapterContext adapterContext = cashRegAdapterContextConverter.convert(cashRegContext)
+ * }
+ * </pre>
+ */
 @Component
 @RequiredArgsConstructor
-public class CashRegAdapterContextConveter implements Converter<CashRegContext, AdapterContext> {
+public class CashRegAdapterContextConverter implements Converter<CashRegContext, AdapterContext> {
 
     private static final byte[] DEFAULT_STATE = new byte[0];
 

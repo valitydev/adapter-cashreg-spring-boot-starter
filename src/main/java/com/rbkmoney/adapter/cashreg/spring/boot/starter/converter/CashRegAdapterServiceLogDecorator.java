@@ -14,11 +14,56 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TException;
 
+
+/**
+ * Usage example:
+ * <p>
+ * Configuration
+ * <pre>
+ * {@code
+ *  @Configuration
+ *  public class HandlerConfiguration {
+ *
+ *      @Bean
+ *      @Autowired
+ *      public CashRegProviderSrv.Iface serverHandlerLogDecorator(CashRegProvider cashRegProvider) {
+ *          return new CashRegAdapterServiceLogDecorator(cashRegProvider);
+ *      }
+ *
+ *  }
+ * }
+ * </pre>
+ * <p>
+ * Servlet
+ * <pre>
+ * {@code
+ * @RequiredArgsConstructor
+ * @WebServlet("/adapter/cashreg/provider_name")
+ * public class AdapterServlet extends GenericServlet {
+ *
+ *     private final CashRegProviderSrv.Iface handler;
+ *     private Servlet servlet;
+ *
+ *     @Override
+ *     public void init(ServletConfig config) throws ServletException {
+ *         super.init(config);
+ *         servlet = new THServiceBuilder().build(CashRegProviderSrv.Iface.class, handler);
+ *     }
+ *
+ *     @Override
+ *     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+ *         servlet.service(request, response);
+ *     }
+ *
+ * }
+ * }
+ * </pre>
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class CashRegAdapterServiceLogDecorator implements CashRegProviderSrv.Iface {
 
-    private final CashRegProviderSrv.Iface adapterService;
+    private final CashRegProviderSrv.Iface handler;
 
     @Override
     public CashRegResult register(CashRegContext cashRegContext) throws TException {
@@ -26,7 +71,7 @@ public class CashRegAdapterServiceLogDecorator implements CashRegProviderSrv.Ifa
         String cashRegId = cashRegContext.getCashregId();
         log.info("Started: {} with cashRegId {}", cashRegType, cashRegId);
         try {
-            CashRegResult regResult = adapterService.register(cashRegContext);
+            CashRegResult regResult = handler.register(cashRegContext);
             log.info("Finished {} with cashRegId {}", cashRegType, cashRegId);
             return regResult;
         } catch (Exception ex) {
