@@ -14,12 +14,12 @@ import java.time.Instant;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AdapterContext {
+public class AdapterState {
+
+    private Step nextStep;
 
     @JsonProperty(value = "max_date_time_polling")
     private Instant maxDateTimePolling;
-
-    private Step nextStep;
 
     @JsonProperty(value = "cashreg_id")
     private String cashRegId;

@@ -11,10 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExitStateModel {
-    private Step nextStep;
     private String errorCode;
     private String errorMessage;
-    private AdapterContext adapterContext;
+    private AdapterState adapterContext;
     private EntryStateModel entryStateModel;
     private String cashRegId;
     private CashRegInfo cashRegInfo;

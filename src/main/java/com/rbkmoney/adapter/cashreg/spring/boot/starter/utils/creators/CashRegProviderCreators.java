@@ -6,15 +6,6 @@ import com.rbkmoney.damsel.cashreg.base.Timer;
 import com.rbkmoney.damsel.cashreg.provider.*;
 import com.rbkmoney.damsel.domain.Failure;
 
-/**
- * Usage example:
- *
- * <pre>
- * {@code
- *     CashRegProviderCreators.createFinishIntentSuccess();
- * }
- * </pre>
- */
 public class CashRegProviderCreators {
 
     public static Intent createFinishIntentSuccess() {

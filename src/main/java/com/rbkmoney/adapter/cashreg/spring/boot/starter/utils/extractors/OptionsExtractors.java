@@ -9,15 +9,6 @@ import java.util.Map;
 import static java.lang.Integer.parseInt;
 
 
-/**
- * Usage example:
- *
- * <pre>
- * {@code
- *     Integer pollingDelay = OptionsExtractors.extractPollingDelay(options, 600);
- * }
- * </pre>
- */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OptionsExtractors {
 

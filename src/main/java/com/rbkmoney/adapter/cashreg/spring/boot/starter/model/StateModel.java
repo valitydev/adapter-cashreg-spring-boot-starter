@@ -8,6 +8,6 @@ import lombok.Data;
 @Builder
 public class StateModel {
     private TargetType targetType;
-    private AdapterContext adapterContext;
+    private AdapterState adapterContext;
     private Step step;
 }

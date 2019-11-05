@@ -15,21 +15,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class OperationModel {
 
-    private String cashRegId;
 
-    private Auth auth;
-    private Company company;
-    private Client client;
-
-    private List<Items> items;
-    private List<Payments> payments;
-    private List<Vat> vats;
-
-    private BigDecimal total;
-
-    @ToString.Exclude
-    private Map<String, String> options;
-
-    private String callbackUrl;
 
 }

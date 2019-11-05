@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
  * Converter IPv4 to IPv6
  * <pre>
  * {@code
- * ConverterIp converterIp = new ConverterIp("2a04:4a00:5:10ff:4:1:");
- * String url = converterIp.replaceIpv4ToIpv6("185.31.132.50"); // 2a04:4a00:5:966:d464:b2f8:a849:3ea8
+ *      ConverterIp converterIp = new ConverterIp("2a04:4a00:5:10ff:4:1:");
+ *      String url = converterIp.replaceIpv4ToIpv6("185.31.132.50"); // 2a04:4a00:5:966:d464:b2f8:a849:3ea8
  * }
  * </pre>
  *
