@@ -50,7 +50,7 @@ public class IntentServiceImpl implements IntentService {
             ))));
         }
 
-        int timerPollingDelay = OptionsExtractors.extractPollingDelay(exitStateModel.getEntryStateModel().getOperationModel().getOptions(), timerProperties.getPollingDelay());
+        int timerPollingDelay = OptionsExtractors.extractPollingDelay(exitStateModel.getEntryStateModel().getOptions(), timerProperties.getPollingDelay());
         return Intent.sleep(new SleepIntent(new Timer(Timer.timeout(timerPollingDelay))));
     }
 
