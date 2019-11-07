@@ -1,6 +1,7 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.model;
 
 
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.TargetType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -30,6 +31,8 @@ public class EntryStateModel {
 
     private String callbackUrl;
 
-    private AdapterState state;
+    private StateModel state;
+
+    private TargetType targetType;
 
 }

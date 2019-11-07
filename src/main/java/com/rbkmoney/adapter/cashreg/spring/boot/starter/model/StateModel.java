@@ -9,5 +9,4 @@ import lombok.Data;
 public class StateModel {
     private TargetType targetType;
     private AdapterState adapterContext;
-    private Step step;
 }
