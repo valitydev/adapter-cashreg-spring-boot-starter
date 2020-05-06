@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-
 @Getter
 @Setter
 @Component
@@ -25,13 +24,13 @@ public class AdapterDeserializer implements Deserializer<AdapterState> {
         try {
             return getMapper().readValue(data, AdapterState.class);
         } catch (IOException e) {
-            throw new IllegalArgumentException(e);
+            throw new DeserializationException(e);
         }
     }
 
     @Override
     public AdapterState read(String data) {
-        throw new RuntimeException("Not supported");
+        throw new DeserializationException("Not supported");
     }
 
 }

@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
 
-
 /**
  * application.yml
  * <pre>
@@ -22,7 +21,7 @@ import javax.validation.constraints.NotEmpty;
  * <pre>
  * {@code
  *      @Autowired
- *      private final AdapterCashRegProperties adapterCashRegProperties;
+ *      private final AdapterCashregProperties adapterCashregProperties;
  * }
  * </pre>
  */
@@ -31,7 +30,7 @@ import javax.validation.constraints.NotEmpty;
 @Validated
 @Configuration
 @ConfigurationProperties("adapter-cashreg")
-public class AdapterCashRegProperties {
+public class AdapterCashregProperties {
 
     @NotEmpty
     private String url;

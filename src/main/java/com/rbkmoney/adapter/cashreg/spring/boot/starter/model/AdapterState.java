@@ -22,7 +22,7 @@ public class AdapterState {
     private Instant maxDateTimePolling;
 
     @JsonProperty(value = "cashreg_id")
-    private String cashRegId;
+    private String cashregId;
 
     @JsonProperty(value = "receipt_id")
     private String receiptId;

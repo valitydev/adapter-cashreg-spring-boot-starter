@@ -1,6 +1,6 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.model;
 
-import com.rbkmoney.damsel.cashreg.CashRegInfo;
+import com.rbkmoney.damsel.cashreg.receipt.ReceiptInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +15,6 @@ public class ExitStateModel {
     private String errorMessage;
     private AdapterState adapterContext;
     private EntryStateModel entryStateModel;
-    private String cashRegId;
-    private CashRegInfo cashRegInfo;
+    private String receiptId;
+    private ReceiptInfo info;
 }

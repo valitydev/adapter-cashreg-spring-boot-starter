@@ -1,19 +1,15 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.extractors;
 
-import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
-import com.rbkmoney.damsel.cashreg.type.Type;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import com.rbkmoney.damsel.cashreg.adapter.CashregContext;
+import com.rbkmoney.damsel.cashreg.receipt.type.Type;
 
-
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class TypeExtractor {
 
-    public static String extractCashRegType(CashRegContext context) {
-        return extractCashRegType(context.getSession().getType());
+    public static String extractCashregType(CashregContext context) {
+        return extractCashregType(context.getSession().getType());
     }
 
-    public static String extractCashRegType(Type type) {
+    public static String extractCashregType(Type type) {
         return type.getSetField().getFieldName().toUpperCase();
     }
 

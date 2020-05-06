@@ -1,6 +1,5 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.model;
 
-
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.TargetType;
 import lombok.Builder;
 import lombok.Data;

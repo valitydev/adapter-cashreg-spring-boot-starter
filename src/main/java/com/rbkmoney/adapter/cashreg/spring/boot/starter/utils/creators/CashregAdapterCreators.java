@@ -1,12 +1,11 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.creators;
 
-
-import com.rbkmoney.damsel.cashreg.CashRegInfo;
+import com.rbkmoney.damsel.cashreg.adapter.*;
 import com.rbkmoney.damsel.cashreg.base.Timer;
-import com.rbkmoney.damsel.cashreg.provider.*;
+import com.rbkmoney.damsel.cashreg.receipt.ReceiptInfo;
 import com.rbkmoney.damsel.domain.Failure;
 
-public class CashRegProviderCreators {
+public class CashregAdapterCreators {
 
     public static Intent createFinishIntentSuccess() {
         return Intent.finish(new FinishIntent(createFinishStatusSuccess()));
@@ -32,8 +31,8 @@ public class CashRegProviderCreators {
         return new Failure().setCode(code).setReason(reason);
     }
 
-    public static CashRegResult createCashRegResult(Intent intent, byte[] state, CashRegInfo cashRegInfo) {
-        return new CashRegResult().setIntent(intent).setCashregInfo(cashRegInfo).setState(state);
+    public static CashregResult createCashRegResult(Intent intent, byte[] state, ReceiptInfo info) {
+        return new CashregResult().setIntent(intent).setInfo(info).setState(state);
     }
 
     public static Intent createIntentWithSleepIntent(Integer timer) {

@@ -1,39 +1,37 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.converter;
 
-
-import com.rbkmoney.adapter.cashreg.spring.boot.starter.state.deserializer.AdapterDeserializer;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.AdapterState;
-import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.state.deserializer.AdapterDeserializer;
+import com.rbkmoney.damsel.cashreg.adapter.CashregContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
 
 /**
  * Usage example:
  * <pre>
  * {@code
  *      @Autowired
- *      CashRegAdapterContextConverter cashRegAdapterContextConverter;
+ *      CashregAdapterContextConverter cashregAdapterContextConverter;
  * }
  * </pre>
  *
  * <pre>
  * {@code
- *      AdapterContext adapterContext = cashRegAdapterContextConverter.convert(cashRegContext)
+ *      AdapterContext adapterContext = cashregAdapterContextConverter.convert(cashregContext)
  * }
  * </pre>
  */
 @Component
 @RequiredArgsConstructor
-public class CashRegAdapterContextConverter implements Converter<CashRegContext, AdapterState> {
+public class CashregAdapterContextConverter implements Converter<CashregContext, AdapterState> {
 
     private static final byte[] DEFAULT_STATE = new byte[0];
 
     private final AdapterDeserializer deserializer;
 
     @Override
-    public AdapterState convert(CashRegContext context) {
+    public AdapterState convert(CashregContext context) {
         AdapterState adapterContext = new AdapterState();
         byte[] state = getState(context);
         if (state != null && state.length > 0) {
@@ -42,7 +40,7 @@ public class CashRegAdapterContextConverter implements Converter<CashRegContext,
         return adapterContext;
     }
 
-    private byte[] getState(CashRegContext context) {
+    private byte[] getState(CashregContext context) {
         if (context.getSession().isSetState()) {
             return context.getSession().getState();
         }

@@ -1,10 +1,9 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.converter;
 
-
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.extractors.TypeExtractor;
-import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
-import com.rbkmoney.damsel.cashreg.provider.CashRegProviderSrv;
-import com.rbkmoney.damsel.cashreg.provider.CashRegResult;
+import com.rbkmoney.damsel.cashreg.adapter.CashregAdapterSrv;
+import com.rbkmoney.damsel.cashreg.adapter.CashregContext;
+import com.rbkmoney.damsel.cashreg.adapter.CashregResult;
 import com.rbkmoney.woody.api.flow.error.WErrorDefinition;
 import com.rbkmoney.woody.api.flow.error.WErrorType;
 import com.rbkmoney.woody.api.flow.error.WRuntimeException;
@@ -13,7 +12,6 @@ import com.rbkmoney.woody.thrift.impl.http.error.THTransportErrorMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TException;
-
 
 /**
  * Usage example:
@@ -26,8 +24,8 @@ import org.apache.thrift.TException;
  *
  *      @Bean
  *      @Autowired
- *      public CashRegProviderSrv.Iface serverHandlerLogDecorator(CashRegProvider cashRegProvider) {
- *          return new CashRegAdapterServiceLogDecorator(cashRegProvider);
+ *      public CashregAdapterSrv.Iface serverHandlerLogDecorator(CashregAdapter cashregAdapter) {
+ *          return new CashregAdapterServiceLogDecorator(cashregAdapter);
  *      }
  *
  *  }
@@ -41,13 +39,13 @@ import org.apache.thrift.TException;
  *  @WebServlet("/adapter/cashreg/provider_name")
  *  public class AdapterServlet extends GenericServlet {
  *
- *     private final CashRegProviderSrv.Iface handler;
+ *     private final CashregAdapterSrv.Iface handler;
  *     private Servlet servlet;
  *
  *     @Override
  *     public void init(ServletConfig config) throws ServletException {
  *         super.init(config);
- *         servlet = new THServiceBuilder().build(CashRegProviderSrv.Iface.class, handler);
+ *         servlet = new THServiceBuilder().build(CashregAdapterSrv.Iface.class, handler);
  *     }
  *
  *     @Override
@@ -61,21 +59,21 @@ import org.apache.thrift.TException;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class CashRegAdapterServiceLogDecorator implements CashRegProviderSrv.Iface {
+public class CashregAdapterServiceLogDecorator implements CashregAdapterSrv.Iface {
 
-    private final CashRegProviderSrv.Iface handler;
+    private final CashregAdapterSrv.Iface handler;
 
     @Override
-    public CashRegResult register(CashRegContext cashRegContext) throws TException {
-        String cashRegType = TypeExtractor.extractCashRegType(cashRegContext);
-        String cashRegId = cashRegContext.getCashregId();
-        log.info("Started: {} with cashRegId {}", cashRegType, cashRegId);
+    public CashregResult register(CashregContext cashRegContext) throws TException {
+        String cashregType = TypeExtractor.extractCashregType(cashRegContext);
+        String cashregId = cashRegContext.getCashregId();
+        log.info("Started: {} with cashreg Id {}", cashregType, cashregId);
         try {
-            CashRegResult regResult = handler.register(cashRegContext);
-            log.info("Finished {} with cashRegId {}", cashRegType, cashRegId);
+            CashregResult regResult = handler.register(cashRegContext);
+            log.info("Finished {} with cashreg Id {}", cashregType, cashregId);
             return regResult;
         } catch (Exception ex) {
-            String message = "Failed handle " + cashRegType + " with cashRegId " + cashRegId;
+            String message = "Failed handle " + cashregType + " with cashreg Id " + cashregId;
             logMessage(ex, message);
             throw ex;
         }
@@ -102,4 +100,5 @@ public class CashRegAdapterServiceLogDecorator implements CashRegProviderSrv.Ifa
         boolean unavailable = definition != null && WErrorType.UNAVAILABLE_RESULT.getKey().equals(definition.getErrorType().getKey());
         return undefined || unavailable;
     }
+
 }

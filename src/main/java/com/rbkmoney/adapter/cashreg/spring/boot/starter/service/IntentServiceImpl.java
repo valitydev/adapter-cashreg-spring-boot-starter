@@ -2,14 +2,16 @@ package com.rbkmoney.adapter.cashreg.spring.boot.starter.service;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.TimerProperties;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.ExitStateModel;
+import com.rbkmoney.damsel.cashreg.adapter.*;
 import com.rbkmoney.damsel.cashreg.base.Timer;
-import com.rbkmoney.damsel.cashreg.provider.*;
+import com.rbkmoney.damsel.domain.Failure;
 import com.rbkmoney.error.mapping.ErrorMapping;
 import com.rbkmoney.java.damsel.utils.extractors.OptionsExtractors;
 import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
 
+import static com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.Error.SLEEP_TIMEOUT;
 
 /**
  * Usage example:
@@ -44,10 +46,8 @@ public class IntentServiceImpl implements IntentService {
             throw new IllegalArgumentException("Need to specify 'maxTimePoolingMillis' before sleep");
         }
         if (exitStateModel.getAdapterContext().getMaxDateTimePolling().getEpochSecond() < Instant.now().getEpochSecond()) {
-            return Intent.finish(new FinishIntent(FinishStatus.failure(errorMapping.mapFailure(
-                    com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.Error.SLEEP_TIMEOUT.getCode(),
-                    com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.Error.SLEEP_TIMEOUT.getMessage()
-            ))));
+            Failure failure = errorMapping.mapFailure(SLEEP_TIMEOUT.getCode(), SLEEP_TIMEOUT.getMessage());
+            return Intent.finish(new FinishIntent(FinishStatus.failure(failure)));
         }
 
         int timerPollingDelay = OptionsExtractors.extractPollingDelay(exitStateModel.getEntryStateModel().getOptions(), timerProperties.getPollingDelay());

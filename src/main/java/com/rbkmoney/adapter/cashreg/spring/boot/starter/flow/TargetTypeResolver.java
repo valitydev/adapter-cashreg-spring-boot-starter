@@ -1,14 +1,14 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.flow;
 
-
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.TargetType;
+import com.rbkmoney.damsel.cashreg.receipt.type.Type;
 import org.apache.thrift.TUnion;
 
 import java.util.Objects;
 
 public class TargetTypeResolver {
 
-    public static TargetType resolve(com.rbkmoney.damsel.cashreg.type.Type type) {
+    public static TargetType resolve(Type type) {
         return TargetTypeResolver.unionFieldToEnum(type, TargetType.class);
     }
 

@@ -49,6 +49,6 @@ public class ErrorMappingConfiguration {
 
     @Bean
     public ErrorMapping errorMapping() throws IOException {
-        return new SimpleErrorMapping(errorMappingFilePath, errorMappingPattern).getErrorMapping();
+        return new SimpleErrorMapping(errorMappingFilePath, errorMappingPattern).createErrorMapping();
     }
 }

@@ -1,15 +1,11 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.extractors;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 
 import java.util.Map;
 
 import static java.lang.Integer.parseInt;
 
-
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OptionsExtractors {
 
     public static Integer extractPollingDelay(Map<String, String> options, int pollingDelay) {
