@@ -4,21 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rbkmoney</groupId>
+    <parent>
+        <groupId>com.rbkmoney</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.5</version>
+        <relativePath/>
+    </parent>
+
     <artifactId>adapter-cashreg-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>8</java.version>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-        <damsel.version>1.402-140a2a6</damsel.version>
-        <serializer.version>0.6.7</serializer.version>
-        <adapter-thrift-lib.version>1.0.4</adapter-thrift-lib.version>
-        <adapter-common-lib.version>0.0.23</adapter-common-lib.version>
-        <error-mapping.version>1.0.5</error-mapping.version>
-        <cashreg-proto.version>1.14-25a9f63</cashreg-proto.version>
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <damsel.version>1.439-b18f037</damsel.version>
+        <adapter-thrift-lib.version>1.0.5</adapter-thrift-lib.version>
+        <adapter-common-lib.version>0.0.26</adapter-common-lib.version>
+        <error-mapping.version>1.0.6</error-mapping.version>
+        <cashreg-proto.version>1.15-f4f228b</cashreg-proto.version>
+        <woody.version>[1.1.21,)</woody.version>
     </properties>
 
     <dependencies>
@@ -32,12 +38,12 @@
         <dependency>
             <groupId>com.rbkmoney.geck</groupId>
             <artifactId>common</artifactId>
-            <version>0.6.9</version>
+            <version>0.6.11</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <version>1.7.30</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -50,7 +56,7 @@
         <dependency>
             <groupId>com.github.seancfoley</groupId>
             <artifactId>ipaddress</artifactId>
-            <version>4.2.0</version>
+            <version>5.0.1</version>
             <scope>provided</scope>
         </dependency>
 
@@ -79,7 +85,13 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--rbk-->
+        <!-- RBK.Money -->
+        <dependency>
+            <groupId>com.rbkmoney.woody</groupId>
+            <artifactId>woody-thrift</artifactId>
+            <version>${woody.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>cashreg-proto</artifactId>
@@ -111,23 +123,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <downloadUrl>http://java-nexus.msk1.rbkmoney.net:8081/nexus/content/groups/public</downloadUrl>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>releases</id>
-            <name>RBKmoney releases repository</name>
-            <url>http://java-nexus.msk1.rbkmoney.net:8081/nexus/content/repositories/releases</url>
-            <layout>default</layout>
-        </repository>
-        <snapshotRepository>
-            <uniqueVersion>true</uniqueVersion>
-            <id>snapshots</id>
-            <name>RBKmoney snapshots repository</name>
-            <url>http://java-nexus.msk1.rbkmoney.net:8081/nexus/content/repositories/snapshots</url>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
