@@ -1,16 +1,19 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.service;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.TimerProperties;
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.EntryStateModel;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.ExitStateModel;
+import com.rbkmoney.adapter.common.model.PollingInfo;
+import com.rbkmoney.adapter.common.utils.times.ExponentialBackOffPollingService;
 import com.rbkmoney.damsel.cashreg.adapter.*;
 import com.rbkmoney.damsel.cashreg.base.Timer;
-import com.rbkmoney.damsel.domain.Failure;
 import com.rbkmoney.error.mapping.ErrorMapping;
-import com.rbkmoney.java.damsel.utils.extractors.OptionsExtractors;
 import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
+import static com.rbkmoney.java.damsel.utils.extractors.OptionsExtractors.extractMaxTimePolling;
 import static com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.Error.SLEEP_TIMEOUT;
 
 /**
@@ -42,16 +45,33 @@ public class IntentServiceImpl implements IntentService {
     }
 
     public Intent getSleep(ExitStateModel exitStateModel) {
-        if (exitStateModel.getAdapterContext().getMaxDateTimePolling() == null) {
-            throw new IllegalArgumentException("Need to specify 'maxTimePoolingMillis' before sleep");
+        Instant maxDateTimePolling = exitStateModel.getAdapterContext().getPollingInfo().getMaxDateTimePolling();
+        if (maxDateTimePolling == null) {
+            throw new IllegalArgumentException("Need to specify 'maxDateTimePolling' before sleep");
         }
-        if (exitStateModel.getAdapterContext().getMaxDateTimePolling().getEpochSecond() < Instant.now().getEpochSecond()) {
-            Failure failure = errorMapping.mapFailure(SLEEP_TIMEOUT.getCode(), SLEEP_TIMEOUT.getMessage());
-            return Intent.finish(new FinishIntent(FinishStatus.failure(failure)));
+        if (maxDateTimePolling.toEpochMilli() < Instant.now().toEpochMilli()) {
+            return prepareFailureIntent();
         }
-
-        int timerPollingDelay = OptionsExtractors.extractPollingDelay(exitStateModel.getEntryStateModel().getOptions(), timerProperties.getPollingDelay());
+        int timerPollingDelay = computePollingInterval(exitStateModel);
         return Intent.sleep(new SleepIntent(new Timer(Timer.timeout(timerPollingDelay))));
     }
 
+    private int computePollingInterval(ExitStateModel exitStateModel) {
+        ExponentialBackOffPollingService<PollingInfo> pollingService = new ExponentialBackOffPollingService<>();
+        return pollingService.prepareNextPollingInterval(
+                exitStateModel.getAdapterContext().getPollingInfo(),
+                exitStateModel.getEntryStateModel().getOptions()
+        );
+    }
+
+    private Intent prepareFailureIntent() {
+        String code = SLEEP_TIMEOUT.getCode();
+        String reason = SLEEP_TIMEOUT.getMessage();
+        return Intent.finish(new FinishIntent(FinishStatus.failure(errorMapping.mapFailure(code, reason))));
+    }
+
+    public Instant extractMaxDateTimeInstant(EntryStateModel entryStateModel) {
+        int maxTimePolling = extractMaxTimePolling(entryStateModel.getOptions(), timerProperties.getMaxTimePolling());
+        return Instant.now().plus(maxTimePolling, ChronoUnit.MINUTES);
+    }
 }

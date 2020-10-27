@@ -1,9 +1,7 @@
 package com.rbkmoney.adapter.cashreg.spring.boot.starter.model;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.TargetType;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,6 +9,8 @@ import java.util.Map;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EntryStateModel {
 
     private String cashRegId;

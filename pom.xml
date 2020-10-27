@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>adapter-cashreg-spring-boot-starter</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -39,6 +39,12 @@
             <groupId>com.rbkmoney.geck</groupId>
             <artifactId>common</artifactId>
             <version>0.6.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rbkmoney.geck</groupId>
+            <artifactId>serializer</artifactId>
+            <version>0.6.11</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
